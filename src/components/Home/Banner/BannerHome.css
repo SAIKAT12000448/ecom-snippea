@@ -1,0 +1,5 @@
+/* Add this CSS to your stylesheet or a separate CSS file */
+.slick-prev,
+.slick-next {
+  display: none !important;
+}

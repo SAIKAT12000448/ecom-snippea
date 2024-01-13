@@ -1,0 +1,89 @@
+/* SearchBar.css */
+
+/* Navbar styles */
+.navbar1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #cdcaca;
+    color: #fff;
+    padding: 10px 20px;
+    /* position: fixed; */
+  }
+  
+  /* All categories dropdown styles */
+  .categories-dropdown {
+    position: relative;
+  }
+  
+  .categories-dropdown select {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  /* Search bar styles */
+  .search-bar {
+    flex-grow: 1;
+   
+    margin: 0 20px;
+  }
+  
+  .search-bar input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+  }
+  
+  /* Cart icon styles */
+ 
+  .search-icon {
+
+    top: 50%;
+    right: 10px; /* Adjust the right position as needed */
+ 
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .navbar1 {
+      flex-direction: row;
+    }
+  
+    .categories-dropdown {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .coin_value{
+      display: none;
+    }
+  
+    .search-bar {
+      width: 100%;
+    }
+  
+    .search-input {
+      width: 70%;
+    }
+  
+    .search-icon {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+  
+  }
+  
+  
