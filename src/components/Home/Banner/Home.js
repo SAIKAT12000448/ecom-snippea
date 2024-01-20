@@ -10,6 +10,7 @@ import TopDeals from '../TopItem/TopDeals';
 import TopRated from '../TopItem/TopRated';
 import Searchbar from '../../Shared/Searchbar';
 import DownloadBanner from './DownloadBanner';
+import Flagbar from '../Flagbar';
 
 const Home = () => {
     return (
@@ -24,6 +25,7 @@ const Home = () => {
                 <ElectronicsItem></ElectronicsItem>
                 <Fashions></Fashions>
                 <MobileAccessories></MobileAccessories>
+                <Flagbar></Flagbar>
                 <DownloadBanner></DownloadBanner>
                 <Footer></Footer>
         </div>

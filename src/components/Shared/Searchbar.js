@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Logo1 from '../../images/Logo1.png'
-import SearchDetails from '../SearchDetails/SearchDetails';
+// import SearchDetails from '../SearchDetails/SearchDetails';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 
@@ -12,6 +12,7 @@ export default function Searchbar() {
     const[categories,setCategory] = useState([]);
     const[perCategory,setPerCategory] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
+    // const [selectItem,setSelectItem] = useState('');
     const[coin,setCoin] = useState([]);
     const navigate = useNavigate();
     let token = localStorage.getItem('token');

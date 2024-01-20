@@ -7,6 +7,13 @@ const Recharge = () => {
   const [paymentMethod, setPaymentMethod] = useState('bikash');
   const [accountNumber, setAccountNumber] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+   const [selectedImage, setSelectedImage] = useState(null);
+
+     const [paymentMethods, setPaymentMethods] = useState({
+    bikash: false,
+    Nagad: false,
+    Bank: false,
+  });
 
 
   let token = localStorage.getItem('token');
@@ -53,36 +60,93 @@ const Recharge = () => {
 
   }
   
-  const handleChange=(e)=>{
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
 
-    switch (e.target.name) {
-      case 'withdrawAmount':
-        
-        setWithdrawAmount(e.target.value);
-        break;
-      case 'paymentMethod':
-        
-        setPaymentMethod(e.target.value);
-        break;
-      case 'accountNumber':
-        setAccountNumber(e.target.value);
-        break;
-      case 'confirmPassword':
-        setConfirmPassword(e.target.value);
-        break;
-      default:
-        break;
+    if (type === 'checkbox') {
+      setPaymentMethods((prevMethods) => ({
+        ...prevMethods,
+        [name]: checked,
+      }));
+      
+    } else {
+      switch (name) {
+        case 'withdrawAmount':
+          setWithdrawAmount(value);
+          break;
+        case 'accountNumber':
+          setAccountNumber(value);
+          break;
+        case 'confirmPassword':
+          setConfirmPassword(value);
+          break;
+        case 'imagefile':
+          setSelectedImage(e.target.files[0]);
+          break;
+        default:
+          break;
+      }
     }
-  }
+  };
   
   return (
     <div className='m-5'>
+{/*  */}
 
-    <div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5 mt-10 tex-center  flex justify-center items-center'>
-    <form  onSubmit={handleSubmit}>
-          <div className="mb-4 flex flex-col md:flex-row justify-center">
-            <label htmlFor="withdrawAmount" className="inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4 ">
-              Withdraw amount
+<div className="">
+
+    <div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5'>
+      <h1 className='text-bold text-left'>Instruction</h1>
+      <ul className='text-left' style={{ listStyleType: 'disc', marginLeft: '1.5em', marginTop: '0.5em' }}>
+        <li>dfmdmfk........</li>
+        <li>dfmdmfk........</li>
+        <li>dfmdmfk........</li>
+        <li>dfmdmfk........</li>
+        <li>dfmdmfk........</li>
+        
+      </ul>
+      </div>
+    
+  </div>
+{/*  */}
+
+
+
+    <div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5 mt-10  flex justify-center items-center'>
+    {/* payment method  */}
+
+    
+
+  <div className='mb-4 flex flex-col md:flex-row justify-between'>
+              <label htmlFor='paymentMethods' className='inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4'>
+                Payment Methods
+              </label>
+              <div>
+                {Object.keys(paymentMethods).map((method) => (
+                  <div key={method} className='flex items-center'>
+                    <input
+                      type='checkbox'
+                      id={`paymentMethod_${method}`}
+                      name={method}
+                      checked={paymentMethods[method]}
+                      onChange={handleChange}
+                      className='mr-2'
+                    />
+                    <label htmlFor={`paymentMethod_${method}`}>{method}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+
+
+
+
+    <form className='flex justify-between' onSubmit={handleSubmit}>
+      <div>
+          <div className="mb-4 flex flex-col md:flex-row justify-between">
+            <label htmlFor="withdrawAmount" className="inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4 lg:ms-3">
+              Amount
             </label>
             <input
               type="number"
@@ -94,27 +158,11 @@ const Recharge = () => {
             />
           </div>
 
-          <div  className="mb-4 flex flex-col md:flex-row justify-center">
-            <label htmlFor="paymentMethod" className="inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4">
-              Payment method
-            </label>
-            <select
-            style={{borderRadius:'10px',padding:'5px',width:'20rem'}}
-            name='paymentMethod'
-              className='border responsive-select'
-              onChange={handleChange}
-              
-              
-            >
-              <option value="bikash">Bikash</option>
-              <option value="Bank">Bank</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
+         
 
-          <div className="mb-4 flex flex-col md:flex-row justify-center">
+          <div className="mb-4 flex flex-col md:flex-row justify-between">
             <label htmlFor="accountNumber" className="inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4 lg:ms-3">
-              Account number
+              Account No
             </label>
             <input
               type="number"
@@ -126,9 +174,9 @@ const Recharge = () => {
             />
           </div>
 
-          <div className="mb-4 flex flex-col md:flex-row justify-center">
+          <div className="mb-4 flex flex-col md:flex-row justify-between">
             <label htmlFor="confirmPassword" className="inline text-black text-sm text-xl font-bold mb-2 md:mb-0 md:mr-4">
-              Confirm password
+              Transaction ID
             </label>
             <input
               type="password"
@@ -140,50 +188,43 @@ const Recharge = () => {
             />
           </div>
 
-          <div className='flex justify-end gap-4'>
-          <div className="mt-6">
+        <div className="mb-4 flex flex-col md:flex-row justify-between">
+      <label htmlFor="imageInput" className="inline text-black text-sm text-xl font-bold mb-2 md:mb-0 md:mr-4">Billing Proof:</label>
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+       className="px-3 py-2 border border-gray-300 rounded-lg w-full md:w-64 focus:outline-none focus:border-blue-500"
+
+        name="imagefile"
+        onChange={handleChange}
+      />
+{/* 
+      {selectedImage && (
+        <div>
+          
+          <img
+            src={(selectedImage)}
+            alt="Selected"
+            style={{ maxWidth: '100%', maxHeight: '200px' }}
+          />
+        </div>
+      )} */}
+    </div>
+
+       </div>
+
+          <div className="mt-6 ms-48">
             <button
               type="submit"
-              style={{ backgroundColor: '#3e6fad' }}
+              style={{ backgroundColor: '#018434' }}
               className="text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300"
             >
-              Confirm
+              Submit
             </button>
           </div>
 
-          <div className="mt-6">
-            <button
-            onClick={()=>document.getElementById('my_modal_5').showModal()}
-              style={{ backgroundColor: '#3e6fad' }}
-              className="text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300"
-            >
-              Instruction
-            </button>
-          </div>
-          </div>
 
-<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-  <div className="modal-box">
-    <h3 className="font-bold text-lg">Instruction</h3>
-    <div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5'>
-      <h1 className='text-bold text-left'>Instruction</h1>
-      <ul className='text-left' style={{ listStyleType: 'disc', marginLeft: '1.5em', marginTop: '0.5em' }}>
-        <li style={{ marginBottom: '0.5em' }}>dfmdmfk........</li>
-        <li style={{ marginBottom: '0.5em' }}>dfmdmfk........</li>
-        <li style={{ marginBottom: '0.5em' }}>dfmdmfk........</li>
-        <li style={{ marginBottom: '0.5em' }}>dfmdmfk........</li>
-        <li style={{ marginBottom: '0.5em' }}>dfmdmfk........</li>
-        <li style={{ marginBottom: '0.5em' }}>dfmdmfk........</li>
-      </ul>
-      </div>
-    <div className="modal-action">
-      <form method="dialog">
-       
-        <button className="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
 
         </form>
     </div>
