@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navigation from '../../Shared/Navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../../Shared/Footer/Footer';
-import BannerHome from '../../Home/Banner/BannerHome';
+// import BannerHome from '../../Home/Banner/BannerHome';
 import FilterProducts from '../FilterProducts/FilterProducts';
 import Searchbar from '../../Shared/Searchbar';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import Logo1 from '../../../images/Logo1.png'
 
 const ITEMS_PER_PAGE = 5; // Number of items to display per page
@@ -19,7 +19,7 @@ const MobileItem = () => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const [selectedRating, setSelectedRating] = useState('all'); // Default is 'all' for all ratings
-    const [sortCriteria, setSortCriteria] = useState('rating'); // Default sorting by rating
+    // const [sortCriteria, setSortCriteria] = useState('rating'); // Default sorting by rating
     const[categories,setCategory] = useState([]);
 
     const ifToken = localStorage.getItem('token');
@@ -53,8 +53,9 @@ if (selectedRating !== 'all') {
             .then(data => {
                 console.log(data);
                 setMobileItems(data.data);
+                
             })
-    }, []);
+    }, [categoryId]);
 
 
   
@@ -111,7 +112,7 @@ if (selectedRating !== 'all') {
                                   
                                 }} 
                                 key={category.category_id}>
-                                   <Link to={`/categories/`}>{category.category_name}</Link> 
+                                   <Link to={`/categories/${category.category_id}`}>{category.category_name}</Link> 
                                     </li>;
                             })
                         }
@@ -138,7 +139,7 @@ if (selectedRating !== 'all') {
                        <h5 className='text-xl '> {mobileItems.length} items found</h5>
                         <div>
                         {/* <label className="block mt-4">Filter by Rating:</label> */}
-  <select
+  {/* <select
     value={selectedRating}
     onChange={(e) => setSelectedRating(e.target.value)}
     className="border p-2"
@@ -150,7 +151,7 @@ if (selectedRating !== 'all') {
     <option value="2">2 Stars</option>
     <option value="1">1 Stars</option>
     
-  </select>
+  </select> */}
                         </div>
                     </div>
                  
@@ -249,6 +250,7 @@ if (selectedRating !== 'all') {
         </button>
     )}
 </div>
+<Outlet></Outlet>
 <Footer></Footer>
         </div>
     );

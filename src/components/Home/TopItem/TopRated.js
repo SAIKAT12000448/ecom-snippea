@@ -38,12 +38,18 @@ const TopRated = () => {
             
             <div style={{width:'280px'}} className="card bg-base-100 shadow-xl">
                 
-                <Link to={`/details/${item.slug}`}>
+                <Link  onClick={()=>alert('coming soon')}>
                             <div className="">
                                 <img style={{ width: '180px',margin:'auto' }} src={item.images[0]} alt="" />
                                 <span className='ms-2 border rounded-full p-2' style={{position: 'absolute', top: '0', right: '0',backgroundColor:'rgb(251, 189, 10)',color:'white',fontWeight:'700'}}>{item.discountPercentage}%</span>
                             </div>
                         </Link>
+                {/* <Link to={`/details/${item.slug}`}>
+                            <div className="">
+                                <img style={{ width: '180px',margin:'auto' }} src={item.images[0]} alt="" />
+                                <span className='ms-2 border rounded-full p-2' style={{position: 'absolute', top: '0', right: '0',backgroundColor:'rgb(251, 189, 10)',color:'white',fontWeight:'700'}}>{item.discountPercentage}%</span>
+                            </div>
+                        </Link> */}
 
 
           <div className="card-body ">

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Logo1 from '../../images/Logo1.png'
 // import SearchDetails from '../SearchDetails/SearchDetails';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import Home from '../Home/Banner/Home';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { Link } from 'react-router-dom';
 
 
@@ -11,7 +14,7 @@ export default function Searchbar() {
     const [searchResults, setSearchResults] = useState([]);
     const[categories,setCategory] = useState([]);
     const[perCategory,setPerCategory] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('all');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     // const [selectItem,setSelectItem] = useState('');
     const[coin,setCoin] = useState([]);
     const navigate = useNavigate();
@@ -24,6 +27,7 @@ console.log(coin);
       .then(res=>res.json())
       .then(data=>{
         setCategory(data.data);
+       
       })
 
     },[])
@@ -46,19 +50,11 @@ console.log(coin);
     },[])
 
  
-    const handleCategoryChange = (event) => {
-      const selectedValue = event.target.value;
-      setSelectedCategory(selectedValue);
-      console.log(selectedValue)
-      if (selectedValue !== 'all') {
-        navigate(`/categories/${selectedValue}`);
-      } else {
-        
-        navigate('/all-categories');
-      }
+
+    const handleDropdownToggle = () => {
+      setIsDropdownOpen(!isDropdownOpen);
     };
-
-
+  
 
     const handleInputChange = (event) => {
         setSearchQuery(event.target.value);    
@@ -84,46 +80,60 @@ console.log(coin);
       setSearchResults(data.data);
       navigate(`/search`, { state: { searchResults: data.data } });
     } else {
-      // Handle error here
       console.error('Search failed');
     }
   } catch (error) {
     console.error('Error:', error);
   }
-
       };
 
-    const handleCategory=()=>{
-         console.log("clocked");
-    }
-    
+
 
   return (
     <div style={{backgroundColor:'white'}} className="navbar1">
-      <div className="categories-dropdown">
-      <select
-        style={{
-          padding: '15px',
-          backgroundColor: 'inherit',
-          border: '1px solid black',
-          color: 'black'
-        }}
-        className='font-bold'
-        value={selectedCategory}
-        onChange={handleCategoryChange}
-      >
-        <option className='' value="all">
-          All Categories
-        </option>
-        {categories.map(category => (
-          <option key={category.category_id} value={category.category_id}>
-           
-              <button onClick={handleCategory}>{category.category_name}</button>
-         
-          </option>
-        ))}
-      </select>
-    </div>
+
+
+<div style={{ position: 'relative', display: 'inline-block' }}>
+          <button
+            onClick={handleDropdownToggle}
+            style={{ color: 'black', padding: '10px', border: '2px solid ', borderRadius: '5px' }}
+          >
+            All Categories <i class="fa-solid fa-caret-down"></i>
+          </button>
+          {isDropdownOpen && (
+            <div
+              style={{
+                position: 'absolute',
+                backgroundColor: '#f4f4f4',
+                borderRadius:'10px',
+                minWidth: '160px',
+                boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+                zIndex: 1,
+              }}
+            >
+              {categories.map((category) => (
+                <Link
+                  key={category.category_id}
+                  to={`/categories/${category.category_id}`}
+                  style={{
+                    color: 'black',
+                    padding: '12px 16px',
+                    display: 'block',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {category.category_name} 
+                
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+     
+
+
+
+  
       <div className="search-bar">
     
     <input 
@@ -134,7 +144,7 @@ console.log(coin);
      value={searchQuery}
     onChange={handleInputChange}
      />
-  <span style={{border:'1px solid black',padding:'10px',borderTopRightRadius:'20px',borderBottomRightRadius:'20px',backgroundColor:'rgb(251, 189, 10)',padding:'11px'}} onClick={handleSearch}> <i style={{color:'black'}} className="fas fa-search search-icon"></i></span>
+  <span style={{border:'1px solid black',padding:'10px',borderTopRightRadius:'20px',borderBottomRightRadius:'20px',backgroundColor:'rgb(251, 189, 10)'}} onClick={handleSearch}> <i style={{color:'black'}} className="fas fa-search search-icon"></i></span>
 </div>
 
 
@@ -144,7 +154,7 @@ console.log(coin);
   <img style={{width:'40px',height:'40px'}} src={Logo1} alt="" />
       <span style={{fontWeight:900,backgroundColor:'rgb(251, 189, 10)',color:'black',padding:'20px',borderRadius:'30%'}} id="coin-value">{coin?.account_balance}</span> 
   </div>
- }
+ }  
 
     </div>
 

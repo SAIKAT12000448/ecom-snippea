@@ -21,7 +21,7 @@ const Signup = () => {
   const [selectedCountryCode, setSelectedCountryCode] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [isVerificationPopupOpen, setVerificationPopupOpen] = useState(false);
-  const[PasswordsMatchError,setPasswordsMatchError] = useState(false);
+  // const[PasswordsMatchError,setPasswordsMatchError] = useState(false);
   const [registrationStatus, setRegistrationStatus] = useState('');
   const[response,setResponse] = useState(false);
 
@@ -239,6 +239,19 @@ const Signup = () => {
           </div>
         </div>
 
+        <div className='mb-4'>
+        <input
+              type="text"
+              id="promo"
+              name="account_phone"
+              placeholder='Promo code'
+              // value={formData.account_phone}
+              // onChange={handleChange}
+              className="px-3 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-blue-500"
+              required
+            />
+        </div>
+
      
 
      
@@ -271,6 +284,21 @@ const Signup = () => {
           />
         </div>
         </div>
+
+        <div className="mb-4">
+            {/* Dropdown for Account Type */}
+            <select
+              name="account_type"
+              // value={formData.account_type}
+              // onChange={handleChange}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-full"
+              required
+            >
+             <option value="Merchant">Merchant</option>
+            
+            </select>
+
+            </div>
 
         <div className="mt-6">
           <button

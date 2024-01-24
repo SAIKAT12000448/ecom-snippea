@@ -12,7 +12,8 @@ import Searchbar from '../../Shared/Searchbar';
 import DownloadBanner from './DownloadBanner';
 import Flagbar from '../Flagbar';
 
-const Home = () => {
+const Home = ({data}) => {
+    console.log('data',data);
     return (
         <div>
                 <Navigation></Navigation>

@@ -5,8 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import quirkyPoint from '../../../images/Quirkypoint.svg'
 
-const ElectronicsItem = () => {
+const ElectronicsItem = (data) => {
+    console.log('electronics ',data);
     const[electronics,setElectronics] = useState([]);
+    const[categories,setCategory] = useState([]);
 
     useEffect(()=>{
         fetch('https://corp.glbpowerplant.com/api/homepageProducts')
@@ -16,15 +18,26 @@ const ElectronicsItem = () => {
             const firstThreeItems = data.data.slice(0, 5);
             setElectronics(firstThreeItems)
         })
-        
-       
 
     },[]);
+
+    
+    useEffect(()=>{
+        fetch('https://corp.glbpowerplant.com/api/categories')
+        .then(res=>res.json())
+        .then(data=>{
+          setCategory(data.data);
+         
+        })
+  
+      },[])
     return (
        <div className='container mx-auto my-5 mt-8'>
        <div className='flex justify-between mx-10'> 
         <h1 className="text-left text-4xl antialiased font-bold my-4">Electronics Item</h1><br/>
-         <h1> <Link to='/products'>  <p className='text-right text-2xl px-5'>view more</p></Link></h1>
+        {
+   <h1> <Link to='/categories/1'>  <p className='text-right text-2xl px-5'>view more</p></Link></h1>
+        }
 
           </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4 card-normal mx-10">
@@ -32,7 +45,13 @@ const ElectronicsItem = () => {
             
             <div style={{width:'280px'}} className="card bg-base-100 shadow-xl">
                 
-                <Link to={`/details/${item.slug}`}>
+                {/* <Link onClick={()=>alert('Coming soon')} to={`/details/${item.slug}`}>
+                            <div className="">
+                                <img style={{ width: '180px',margin:'auto' }} src={item.images[0]} alt="" />
+                                <span className='ms-2 border rounded-full p-2' style={{position: 'absolute', top: '0', right: '0',backgroundColor:'rgb(251, 189, 10)',color:'white',fontWeight:'700'}}>{item.discountPercentage}%</span>
+                            </div>
+                        </Link> */}
+                <Link onClick={()=>alert('Coming soon')}>
                             <div className="">
                                 <img style={{ width: '180px',margin:'auto' }} src={item.images[0]} alt="" />
                                 <span className='ms-2 border rounded-full p-2' style={{position: 'absolute', top: '0', right: '0',backgroundColor:'rgb(251, 189, 10)',color:'white',fontWeight:'700'}}>{item.discountPercentage}%</span>

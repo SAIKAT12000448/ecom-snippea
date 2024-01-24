@@ -91,24 +91,7 @@ const Recharge = () => {
   
   return (
     <div className='m-5'>
-{/*  */}
 
-<div className="">
-
-    <div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5'>
-      <h1 className='text-bold text-left'>Instruction</h1>
-      <ul className='text-left' style={{ listStyleType: 'disc', marginLeft: '1.5em', marginTop: '0.5em' }}>
-        <li>dfmdmfk........</li>
-        <li>dfmdmfk........</li>
-        <li>dfmdmfk........</li>
-        <li>dfmdmfk........</li>
-        <li>dfmdmfk........</li>
-        
-      </ul>
-      </div>
-    
-  </div>
-{/*  */}
 
 
 
@@ -199,17 +182,7 @@ const Recharge = () => {
         name="imagefile"
         onChange={handleChange}
       />
-{/* 
-      {selectedImage && (
-        <div>
-          
-          <img
-            src={(selectedImage)}
-            alt="Selected"
-            style={{ maxWidth: '100%', maxHeight: '200px' }}
-          />
-        </div>
-      )} */}
+
     </div>
 
        </div>
@@ -231,7 +204,21 @@ const Recharge = () => {
 
 
 
+    <div className="">
 
+<div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5 mt-5'>
+  <h1 className='text-bold text-left'>Instruction</h1>
+  <ul className='text-left' style={{ listStyleType: 'disc', marginLeft: '1.5em', marginTop: '0.5em' }}>
+    <li>dfmdmfk........</li>
+    <li>dfmdmfk........</li>
+    <li>dfmdmfk........</li>
+    <li>dfmdmfk........</li>
+    <li>dfmdmfk........</li>
+    
+  </ul>
+  </div>
+
+</div>
 
 
 

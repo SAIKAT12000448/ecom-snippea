@@ -12,43 +12,36 @@ export const Inventory = () => {
     let token = localStorage.getItem('token');
   
 
-    const handleProceed = (itemId) => {
-     
-
-       
-        const data = {
-            my_product_id: itemId,
-            product_quantity:quantity,
-            product_amount_per_quantity: totalPrice
-          
-        };
-        console.log('data',data);
-      
-        // Send the POST request
-        fetch('https://corp.glbpowerplant.com/api/sellProduct', {
-          method: 'POST',
-          headers: {  
-            'Authorization': `${token}`,         
-            'Content-Type': 'application/json', 
-          },
-          body: JSON.stringify({...data}), 
-        })
-          .then((response) => {
-            if (response.ok) {
-            
-             alert('Product sold successfully');
-              
-              document.getElementById(`my_modal_${itemId}`).close();
-            } else {
-              
-              alert('Failed to sell the product');
-            }
-          })
-          .catch((error) => {
-            
-            console.error('Network error:', error);
-          });
+    const handleProceed = async (itemId) => {
+      const data = {
+          my_product_id: itemId,
+          product_quantity: quantity,
+          product_amount_per_quantity: totalPrice
       };
+  
+      try {
+          const response = await fetch('https://corp.glbpowerplant.com/api/sellProduct', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `${token}`,
+              },
+              body: JSON.stringify(data),
+          });
+  
+          console.log('Request Data:', JSON.stringify(data));
+  
+          if (response.ok) {
+              const responseData = await response.json();
+              console.log('Response data:', responseData);
+          } else {
+              console.log('Error response:', response.status);
+          }
+      } catch (error) {
+          console.error('Network error:', error);
+      }
+  };
+  
       
        
       const handlePriceChange = (event) => {

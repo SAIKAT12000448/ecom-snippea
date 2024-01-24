@@ -2,8 +2,8 @@ import React, { } from 'react';
 import { Link } from 'react-router-dom';
 import quirky from '../../images/quirky1.png'
 import './Searchbar.css'
-import avatar from '../../images/avatar.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import avatar from '../../images/avatar.png'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Navigation = () => {
 
 
@@ -54,16 +54,29 @@ const Navigation = () => {
         <li><Link className='text-bold text-2xl font-normal' style={{color:'0D83BA'}} to='/contact'>Contact us</Link></li>
 
        
+     {
+      !ifToken ?<li tabIndex={0}>
       
-      <li tabIndex={0}>
-        <details>
-          <summary className='text-bold text-2xl font-normal' style={{color:'0D83BA'}}>Parent</summary>
-          <ul style={{zIndex:"1000"}} className="p-2">
-            <li><Link>Submenu 1</Link></li>
-            <li><Link>Submenu 2</Link></li>
-          </ul>
-        </details>
-      </li>
+      <details>
+        <summary className='text-bold text-2xl font-normal' style={{color:'0D83BA'}}>Partners</summary>
+        <ul style={{zIndex:"1000"}} className="p-2">
+          <li><Link>Become a supplier</Link></li>
+          <li><Link>Merchant</Link></li>
+        </ul>
+      </details>
+    </li>  
+    :
+    <li>
+      <details>
+        <summary className='text-bold text-2xl font-normal' style={{color:'0D83BA'}}>Payment</summary>
+        <ul style={{zIndex:"1000"}} className="p-2">
+          <li><Link to='/payment'>Recharge</Link></li>
+          <li><Link to='/payment'>Withdraw</Link></li>
+        </ul>
+      </details>
+    </li> 
+     } 
+      
       
     </ul> 
   </div>

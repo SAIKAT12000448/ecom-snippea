@@ -16,6 +16,7 @@ import SearchDetails from './components/SearchDetails/SearchDetails';
 import Payment from './components/Payment/Payment';
 import Recharge from './components/Payment/Recharge';
 import Withdraw from './components/Payment/Withdraw';
+import ContactUsPage from './components/Home/Contact/ContactUsPage';
 // import ScrollButton from './components/Shared/ScrollButton/ScrollButton';
 
 
@@ -49,9 +50,9 @@ function App() {
     </Route>
     
     {/* <Route path="/details/:slug" element={<ProtectedRoutes Component={ProductDetails} />} /> */}
-
       
-    
+    <Route path="/contact" element={<ContactUsPage/>}/>
+
   </Routes>
 </BrowserRouter>
 

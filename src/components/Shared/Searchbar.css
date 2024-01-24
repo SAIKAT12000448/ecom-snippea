@@ -58,20 +58,27 @@
   
   @media screen and (max-width: 768px) {
     .navbar1 {
-      flex-direction: row;
+      /* flex-direction: row; */
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      
     }
   
     .categories-dropdown {
       margin-right: 0;
       margin-bottom: 10px;
     }
-    .coin_value{
-      display: none;
-    }
+   
   
     .search-bar {
       width: 100%;
+    
     }
+
+     /* .coin_value{
+     order: 1;
+    } */
   
     .search-input {
       width: 70%;
