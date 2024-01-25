@@ -9,7 +9,7 @@ import MobileItem from './components/Products/ElectronicsProducts/MobileItem';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import { Reviews } from './components/ProductDetails/Reviews/Reviews';
 import { Inventory } from './components/Inventory/Inventory';
-import ProtectedRoutes from './components/Hooks/ProtectedRoutes';
+// import ProtectedRoutes from './components/Hooks/ProtectedRoutes';
 import { History } from './components/Profile/History/History';
 import { EditProfile } from './components/Profile/EditProfile/EditProfile';
 import SearchDetails from './components/SearchDetails/SearchDetails';
