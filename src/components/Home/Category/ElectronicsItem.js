@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import quirkyPoint from '../../../images/Quirkypoint.svg'
 
 const ElectronicsItem = (data) => {
-    console.log('electronics ',data);
+    // console.log('electronics ',data);
     const[electronics,setElectronics] = useState([]);
     const[categories,setCategory] = useState([]);
 

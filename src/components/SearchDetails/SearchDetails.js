@@ -9,7 +9,7 @@ const SearchDetails = () => {
   const searchResults = state && state.searchResults ? state.searchResults : [];
   const ifToken = localStorage.getItem('token');
 
-    console.log('searchresult',searchResults);
+    // console.log('searchresult',searchResults);
   return (
     <div>
         <Navigation></Navigation>

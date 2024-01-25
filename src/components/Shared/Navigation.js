@@ -15,8 +15,8 @@ const Navigation = () => {
 
 
   const ifToken = localStorage.getItem('token');
-  console.log('token is',ifToken);
-  const userName = localStorage.getItem('userData');
+  // console.log('token is',ifToken);
+
 
     return (
       <div>

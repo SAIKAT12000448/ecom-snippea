@@ -12,7 +12,7 @@ const ElectronicsItem = () => {
         fetch('https://corp.glbpowerplant.com/api/homepageProducts')
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.data[0].slug);
+            // console.log(data.data[0].slug);
             const firstThreeItems = data.data.slice(0, 4);
             setElectronics(firstThreeItems)
         })

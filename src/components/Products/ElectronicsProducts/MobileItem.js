@@ -29,7 +29,7 @@ const MobileItem = () => {
       fetch('https://corp.glbpowerplant.com/api/categories')
       .then(res=>res.json())
       .then(data=>{
-        console.log(data);
+        // console.log(data);
         setCategory(data.data);
       })
 
@@ -51,7 +51,7 @@ if (selectedRating !== 'all') {
         fetch(`https://corp.glbpowerplant.com/api/filterProducts?category=${categoryId}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setMobileItems(data.data);
                 
             })

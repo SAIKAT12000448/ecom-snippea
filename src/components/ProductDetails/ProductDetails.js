@@ -9,7 +9,7 @@ import './ProductDetails.css';
 import Footer from '../Shared/Footer/Footer';
 import { Link } from 'react-router-dom';
 import RelatedProducts from './Relatedproducts/RelatedProducts';
-import { Reviews } from './Reviews/Reviews';
+// import { Reviews } from './Reviews/Reviews';
 import Swal from 'sweetalert2'
 import quirkyPoint from '../../images/Quirkypoint.svg'
 const ProductDetails = () => {
@@ -21,10 +21,10 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
   const details  = productDetails.product && productDetails.product.product_discounted_price;
   const [totalPrice, setTotalPrice] = useState(details);
-  console.log('product',productDetails);
-  console.log(totalPrice);
+  // console.log('product',productDetails);
+  // console.log(totalPrice);
 
-  console.log(productDetails);
+  // console.log(productDetails);
     const { slug } = useParams();
    
 
@@ -44,7 +44,7 @@ const ProductDetails = () => {
         
         
       };
-      console.log('data',data);
+      // console.log('data',data);
     
       fetch('https://corp.glbpowerplant.com/api/buyProduct', {
         method: 'POST',
@@ -89,7 +89,7 @@ const ProductDetails = () => {
 
 const handleButtonClick = () => {
 
-console.log('first');
+// console.log('first');
       if(productDetails.product?.product_min_buy_quantity-1>=quantity){
         Swal.fire({
           icon: "error",
@@ -135,10 +135,10 @@ console.log('first');
         fetch(`https://corp.glbpowerplant.com/api/productDetails/${slug}`)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.data.ratings);
+            // console.log(data.data.ratings);
             setCurrentImageIndex(0);
             setProductDetails(data.data);
-            console.log(data.data);
+            // console.log(data.data);
             // console.log(data.data.product.product_min_buy_quantity);
         })
 
@@ -150,7 +150,7 @@ console.log('first');
 
     const handleShareClick=()=>{
        const currentUrl = window.location.href;
-       console.log(currentUrl);
+      //  console.log(currentUrl);
        const tempInput = document.createElement('input');
         tempInput.value = currentUrl;
         document.body.appendChild(tempInput);
@@ -197,7 +197,7 @@ console.log('first');
         {productDetails.product_images &&
           productDetails.product_images.map((imageUrl, index) => (
             <div key={index} onClick={() => handleImageClick(index)}>
-              <img
+              <image
               width="150px"
                 src={imageUrl}
                 alt={`Product Image ${index + 1}`}
@@ -212,7 +212,7 @@ console.log('first');
 <div className=''>
           {productDetails.product_images && (
           <div>
-            <img
+            <image
             width="100%"
               src={
                 currentImageIndex !== null
@@ -309,7 +309,7 @@ console.log('first');
           <div>
           {productDetails.product_images && productDetails.product_images.length > 0 ? (
                 
-                <img
+                <image
                 width="50%"
                 src={productDetails.product_images[currentImageIndex]}
                 alt="Selected Product Image"

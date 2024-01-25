@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Navigation from '../Shared/Navigation';
-import quirky from '../../images/Logo1.png';
-import { useForm } from 'react-hook-form';
+// import Navigation from '../Shared/Navigation';
+// import quirky from '../../images/Logo1.png';
+// import { useForm } from 'react-hook-form';
 import Logo1 from '../../images/Logo1.png'
 import './Withdraw.css';
 const Withdraw = () => {
@@ -28,7 +28,7 @@ const Withdraw = () => {
     .then(res=>res.json())
     .then(data=>{
       setCoin(data.data)
-      console.log(data?.data?.account_balance)
+      // console.log(data?.data?.account_balance)
     })
   },[])
 
@@ -54,7 +54,7 @@ const Withdraw = () => {
       });
   
       if(response.ok){
-        console.log('Withdraw successful');
+        // console.log('Withdraw successful');
       }
       else{
         console.error('withdraw failed');

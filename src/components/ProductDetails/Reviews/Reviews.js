@@ -5,13 +5,13 @@ import { useParams } from 'react-router';
 export const Reviews = () => {
   const[reviews,setReviews] = useState([]);
   const { slug } = useParams();
-  console.log(slug);
+  // console.log(slug);
 
   useEffect(()=>{
       fetch(`https://corp.glbpowerplant.com/api/productDetails/${slug}`)
       .then(res=>res.json())
       .then(data=>{
-        console.log(data.data?.reviews);
+        // console.log(data.data?.reviews);
         setReviews(data.data?.reviews)
         
       })

@@ -13,7 +13,7 @@ const Fashions = () => {
         fetch('https://corp.glbpowerplant.com/api/homepageProducts')
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.data);
+            // console.log(data.data);
             const firstThreeItems = data.data.slice(0, 5);
             setElectronics(firstThreeItems)
         })

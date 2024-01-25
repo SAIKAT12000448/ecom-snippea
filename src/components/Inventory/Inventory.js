@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navigation from '../Shared/Navigation'
-import Searchbar from '../Shared/Searchbar'
+// import Searchbar from '../Shared/Searchbar'
 
 export const Inventory = () => {
     const[items,setItems] = useState([]);
@@ -29,16 +29,16 @@ export const Inventory = () => {
               body: JSON.stringify(data),
           });
   
-          console.log('Request Data:', JSON.stringify(data));
+          // console.log('Request Data:', JSON.stringify(data));
   
           if (response.ok) {
               const responseData = await response.json();
-              console.log('Response data:', responseData);
+              // console.log('Response data:', responseData);
           } else {
-              console.log('Error response:', response.status);
+              // console.log('Error response:', response.status);
           }
       } catch (error) {
-          console.error('Network error:', error);
+          // console.error('Network error:', error);
       }
   };
   
@@ -61,7 +61,7 @@ export const Inventory = () => {
         .then(res => res.json())
         .then(data => {
           setItems(data.data);
-          console.log(data.data);
+          // console.log(data.data);
         })
       }, []);
       
@@ -83,9 +83,9 @@ const decrementQuantity = (itemId) => {
 };
 
 const updateTotalPrice = (itemId, newQuantity) => {
-  console.log('SDS',itemId);
+  // console.log('SDS',itemId);
   const selectedItem = items.find((item) => item.product_id === itemId);
-  console.log('items '.items);
+  // console.log('items '.items);
   if (selectedItem) {
     const pricePerUnit = selectedItem.my_price;
     setTotalPrice(pricePerUnit * newQuantity);

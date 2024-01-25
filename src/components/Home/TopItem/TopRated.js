@@ -14,7 +14,7 @@ const TopRated = () => {
         fetch('https://corp.glbpowerplant.com/api/homepageProducts')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.data);
+                // console.log(data.data);
                 const firstThreeItems = data.data.slice(0, 5);
                 // Filter items based on rating
                 const filteredElectronics = firstThreeItems.filter(

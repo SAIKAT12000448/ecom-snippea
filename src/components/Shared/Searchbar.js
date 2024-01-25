@@ -19,9 +19,9 @@ export default function Searchbar() {
     const[coin,setCoin] = useState([]);
     const navigate = useNavigate();
     let token = localStorage.getItem('token');
-console.log(coin);
+// console.log(coin);
 
-    console.log(perCategory);
+    // console.log(perCategory);
     useEffect(()=>{
       fetch('https://corp.glbpowerplant.com/api/categories')
       .then(res=>res.json())
@@ -45,7 +45,7 @@ console.log(coin);
       .then(res=>res.json())
       .then(data=>{
         setCoin(data.data)
-        console.log(data?.data?.account_balance)
+        // console.log(data?.data?.account_balance)
       })
     },[])
 

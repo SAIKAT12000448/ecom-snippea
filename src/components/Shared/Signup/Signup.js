@@ -37,7 +37,7 @@ const Signup = () => {
         }
       })
       .then((data) => {
-        console.log(data.data);
+        // console.log(data.data);
         if (data.data.length > 0) {
           setSelectedCountryCode(data.data[0].dial_code);
         }
@@ -61,7 +61,7 @@ const Signup = () => {
   };
 
 
-  console.log(formData);
+  // console.log(formData);
 
   const handleCountryCodeChange = (e) => {
     setSelectedCountryCode(e.target.value);
@@ -89,7 +89,7 @@ const Signup = () => {
     
     if (response.ok) {
       const responseData = await response.json();
-      console.log('token',responseData.data);
+      // console.log('token',responseData.data);
       setRegistrationStatus('Phone number verified');
       const Toast = Swal.mixin({
         toast: true,
@@ -151,7 +151,7 @@ const Signup = () => {
 
     try {
       const completePhoneNumber = `${selectedCountryCode}${formData.account_phone}`;
-      console.log(completePhoneNumber);
+      // console.log(completePhoneNumber);
 
       const response = await fetch('https://corp.glbpowerplant.com/api/register', {
         method: 'POST',
@@ -167,8 +167,8 @@ const Signup = () => {
       if (response.ok) {
         if (formData.account_password === formData.confirm_password){
           const responseData = await response.json();
-          console.log('token',responseData.data.token);
-        console.log('Registration successful:', responseData);
+        //   console.log('token',responseData.data.token);
+        // console.log('Registration successful:', responseData);
         setResponse(true);
         
         localStorage.setItem('token',responseData.data.token);

@@ -16,7 +16,7 @@ const Login = () => {
     login_latitude:"",
     login_longitude:""
   });
-  console.log(formData);
+  // console.log(formData);
   
   const [countryCodes, setCountryCodes] = useState([]);
   useEffect(()=>{
@@ -97,7 +97,7 @@ const Login = () => {
         else{
           navigate('/home');
         }
-       console.log(responseData.message)
+      //  console.log(responseData.message)
       } else {
         const Toast = Swal.mixin({
           toast: true,

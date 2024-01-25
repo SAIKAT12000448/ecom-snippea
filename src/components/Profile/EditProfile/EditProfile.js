@@ -30,7 +30,7 @@ export const EditProfile = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data.data);
+      // console.log(data.data);
       setuserData(data.data);
     })
     .catch(error => {
@@ -42,7 +42,7 @@ export const EditProfile = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        // console.log(formData);
       
         const url = "https://corp.glbpowerplant.com/api/updateProfile";
       
@@ -54,10 +54,10 @@ export const EditProfile = () => {
             },
           });
       
-          console.log(response);
+          // console.log(response);
       
           if (response.status === 200) {
-            console.log('Response data:', response.data);
+            // console.log('Response data:', response.data);
             Swal.fire({
               position: "top-end",
               icon: "success",

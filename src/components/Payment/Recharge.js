@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Navigation from '../Shared/Navigation'
+// import Navigation from '../Shared/Navigation'
 import Swal from 'sweetalert2'
 
 const Recharge = () => {
@@ -41,7 +41,7 @@ const Recharge = () => {
       });
   
       if(response.ok){
-        console.log('Recharge successful');
+        // console.log('Recharge successful');
         Swal.fire("Recharge successful");
       }
       else{

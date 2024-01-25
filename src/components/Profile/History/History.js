@@ -14,7 +14,7 @@ export const History = () => {
     })
     .then(res=>res.json())
     .then(data=>{
-      console.log(data.data);
+      // console.log(data.data);
       setProductHistory(data.data);
     })
 
