@@ -11,7 +11,7 @@ function FilterProducts({setMobileItems}) {
     const fetchFilteredProducts = async () => {
       try {
         const response = await axios.get(
-          'https://corp.glbpowerplant.com/api/filterProducts',
+          'https://corp.quirkybuy.com/api/filterProducts',
           {
             params: {
               category_id: 1,

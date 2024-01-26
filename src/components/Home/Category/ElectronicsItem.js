@@ -11,7 +11,7 @@ const ElectronicsItem = (data) => {
     const[categories,setCategory] = useState([]);
 
     useEffect(()=>{
-        fetch('https://corp.glbpowerplant.com/api/homepageProducts')
+        fetch('https://corp.quirkybuy.com/api/homepageProducts')
         .then(res=>res.json())
         .then(data=>{
             console.log(data.data[0].slug);
@@ -23,7 +23,7 @@ const ElectronicsItem = (data) => {
 
     
     useEffect(()=>{
-        fetch('https://corp.glbpowerplant.com/api/categories')
+        fetch('https://corp.quirkybuy.com/api/categories')
         .then(res=>res.json())
         .then(data=>{
           setCategory(data.data);

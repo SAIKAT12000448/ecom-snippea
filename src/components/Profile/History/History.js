@@ -7,7 +7,7 @@ export const History = () => {
        let token = localStorage.getItem('token');
   useEffect(()=>{
  
-    fetch('https://corp.glbpowerplant.com/api/myTransactions',{
+    fetch('https://corp.quirkybuy.com/api/myTransactions',{
       headers: {
         'Authorization': `${token}`
       }

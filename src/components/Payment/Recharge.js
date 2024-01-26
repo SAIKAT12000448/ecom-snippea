@@ -31,7 +31,7 @@ const Recharge = () => {
 
     
 
-      const response =await fetch('https://corp.glbpowerplant.com/api/rechargeWallet',{
+      const response =await fetch('https://corp.quirkybuy.com/api/rechargeWallet',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

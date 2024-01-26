@@ -20,7 +20,7 @@ export const Inventory = () => {
       };
   
       try {
-          const response = await fetch('https://corp.glbpowerplant.com/api/sellProduct', {
+          const response = await fetch('https://corp.quirkybuy.com/api/sellProduct', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const Inventory = () => {
 
 
       useEffect(() => {
-        fetch('https://corp.glbpowerplant.com/api/myProducts', {
+        fetch('https://corp.quirkybuy.com/api/myProducts', {
           method: 'GET',
           headers: {
             'Authorization': `${token}`,

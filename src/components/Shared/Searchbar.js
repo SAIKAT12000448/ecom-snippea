@@ -23,7 +23,7 @@ export default function Searchbar() {
 
     // console.log(perCategory);
     useEffect(()=>{
-      fetch('https://corp.glbpowerplant.com/api/categories')
+      fetch('https://corp.quirkybuy.com/api/categories')
       .then(res=>res.json())
       .then(data=>{
         setCategory(data.data);
@@ -35,7 +35,7 @@ export default function Searchbar() {
     // balance inquiry
 
     useEffect(()=>{
-      fetch('https://corp.glbpowerplant.com/api/balanceInquiry',{
+      fetch('https://corp.quirkybuy.com/api/balanceInquiry',{
         method:'GET',
         headers: {  
           'Authorization': `${token}`,         
@@ -67,7 +67,7 @@ export default function Searchbar() {
         e.preventDefault();
 
   try {
-    const response = await fetch('https://corp.glbpowerplant.com/api/searchProduct', {
+    const response = await fetch('https://corp.quirkybuy.com/api/searchProduct', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

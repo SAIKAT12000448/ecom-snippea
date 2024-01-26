@@ -26,7 +26,7 @@ const MobileItem = () => {
  
 
     useEffect(()=>{
-      fetch('https://corp.glbpowerplant.com/api/categories')
+      fetch('https://corp.quirkybuy.com/api/categories')
       .then(res=>res.json())
       .then(data=>{
         // console.log(data);
@@ -48,7 +48,7 @@ if (selectedRating !== 'all') {
 
 
     useEffect(() => {
-        fetch(`https://corp.glbpowerplant.com/api/filterProducts?category=${categoryId}`)
+        fetch(`https://corp.quirkybuy.com/api/filterProducts?category=${categoryId}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

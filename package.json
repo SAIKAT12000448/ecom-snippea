@@ -1,11 +1,11 @@
 {
 
-  "name": "snippea",
-  "homepage":"https://quirkybuy.com",
+  "name": "quirkybuy", 
+  "homepage":"https://quirkybuy.com/production",
 
   "version": "0.1.0",
 
-  "private": true,
+  "private": false,
 
   "dependencies": {
 

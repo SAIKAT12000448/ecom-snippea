@@ -20,7 +20,7 @@ export const EditProfile = () => {
   let token = localStorage.getItem("token");
   
   useEffect(()=>{
-    fetch('https://corp.glbpowerplant.com/api/userProfile', {
+    fetch('https://corp.quirkybuy.com/api/userProfile', {
       
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export const EditProfile = () => {
         e.preventDefault();
         // console.log(formData);
       
-        const url = "https://corp.glbpowerplant.com/api/updateProfile";
+        const url = "https://corp.quirkybuy.com/api/updateProfile";
       
         try {
           const response = await axios.post(url, formData, {

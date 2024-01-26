@@ -9,7 +9,7 @@ const MobileAccessories = () => {
     const[electronics,setElectronics] = useState([]);
 
     useEffect(()=>{
-        fetch('https://corp.glbpowerplant.com/api/homepageProducts')
+        fetch('https://corp.quirkybuy.com/api/homepageProducts')
         .then(res=>res.json())
         .then(data=>{
             // console.log(data.data);

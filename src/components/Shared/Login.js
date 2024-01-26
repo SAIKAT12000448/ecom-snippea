@@ -20,7 +20,7 @@ const Login = () => {
   
   const [countryCodes, setCountryCodes] = useState([]);
   useEffect(()=>{
-    fetch('https://corp.glbpowerplant.com/api/countries')
+    fetch('https://corp.quirkybuy.com/api/countries')
     .then((response) => response.json())
     .then((data) => {
      
@@ -58,7 +58,7 @@ const Login = () => {
     const completePhoneNumber = `${selectedCountryCode}${formData.account_phone}`;
 
     try {
-      const response = await fetch('https://corp.glbpowerplant.com/api/login', {
+      const response = await fetch('https://corp.quirkybuy.com/api/login', {
         
         method: 'POST',
         headers: {

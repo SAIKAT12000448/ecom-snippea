@@ -46,7 +46,7 @@ const ProductDetails = () => {
       };
       // console.log('data',data);
     
-      fetch('https://corp.glbpowerplant.com/api/buyProduct', {
+      fetch('https://corp.quirkybuy.com/api/buyProduct', {
         method: 'POST',
         headers: {  
           'Content-Type': 'application/json', 
@@ -132,7 +132,7 @@ const handleButtonClick = () => {
     };
 
     useEffect(()=>{
-        fetch(`https://corp.glbpowerplant.com/api/productDetails/${slug}`)
+        fetch(`https://corp.quirkybuy.com/api/productDetails/${slug}`)
         .then(res=>res.json())
         .then(data=>{
             // console.log(data.data.ratings);

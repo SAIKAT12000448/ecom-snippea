@@ -8,7 +8,7 @@ export const Reviews = () => {
   // console.log(slug);
 
   useEffect(()=>{
-      fetch(`https://corp.glbpowerplant.com/api/productDetails/${slug}`)
+      fetch(`https://corp.quirkybuy.com/api/productDetails/${slug}`)
       .then(res=>res.json())
       .then(data=>{
         // console.log(data.data?.reviews);

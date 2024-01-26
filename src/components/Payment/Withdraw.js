@@ -18,7 +18,7 @@ const Withdraw = () => {
   // balance inquiry
 
   useEffect(()=>{
-    fetch('https://corp.glbpowerplant.com/api/balanceInquiry',{
+    fetch('https://corp.quirkybuy.com/api/balanceInquiry',{
       method:'GET',
       headers: {  
         'Authorization': `${token}`,         
@@ -44,7 +44,7 @@ const Withdraw = () => {
    
     try{
 
-      const response =await fetch('https://corp.glbpowerplant.com/api/withdrawWallet',{
+      const response =await fetch('https://corp.quirkybuy.com/api/withdrawWallet',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

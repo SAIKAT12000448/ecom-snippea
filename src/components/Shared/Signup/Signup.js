@@ -13,6 +13,9 @@ const Signup = () => {
     account_name: '',
     account_phone: '',
     account_password: '',
+    account_ip_address:"",
+    account_latitude:"",
+    account_longitude:"" 
   });
 
   const navigate = useNavigate();
@@ -23,12 +26,12 @@ const Signup = () => {
   const [isVerificationPopupOpen, setVerificationPopupOpen] = useState(false);
   // const[PasswordsMatchError,setPasswordsMatchError] = useState(false);
   const [registrationStatus, setRegistrationStatus] = useState('');
-  const[response,setResponse] = useState(false);
+  // const[response,setResponse] = useState(false);
 
  
 
   useEffect(() => {
-    fetch('https://corp.glbpowerplant.com/api/countries')
+    fetch('https://corp.quirkybuy.com/api/countries')
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -72,10 +75,11 @@ const Signup = () => {
 
   const handleVerificationSubmit = async (e) => {
     // console.log(verificationCode(verificationCode));
+    // console.log('auth',authTok)
     e.preventDefault();
 
   try {
-   const apiUrl = 'https://corp.glbpowerplant.com/api/verifyOtp';
+   const apiUrl = 'https://corp.quirkybuy.com/api/verifyOtp';
  
    const token = localStorage.getItem('token');
     const response = await fetch(apiUrl, {
@@ -142,7 +146,7 @@ const Signup = () => {
 
 
 
-
+console.log(formData);
 
   const handleSubmit = async (e) => {
 
@@ -153,7 +157,7 @@ const Signup = () => {
       const completePhoneNumber = `${selectedCountryCode}${formData.account_phone}`;
       // console.log(completePhoneNumber);
 
-      const response = await fetch('https://corp.glbpowerplant.com/api/register', {
+      const response = await fetch('https://corp.quirkybuy.com/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -167,9 +171,10 @@ const Signup = () => {
       if (response.ok) {
         if (formData.account_password === formData.confirm_password){
           const responseData = await response.json();
-        //   console.log('token',responseData.data.token);
+          console.log('token',responseData.data.token);
+          
         // console.log('Registration successful:', responseData);
-        setResponse(true);
+        // setResponse(true);
         
         localStorage.setItem('token',responseData.data.token);
         localStorage.setItem('userData',formData.account_name);
@@ -248,7 +253,7 @@ const Signup = () => {
               // value={formData.account_phone}
               // onChange={handleChange}
               className="px-3 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-blue-500"
-              required
+            
             />
         </div>
 
@@ -292,7 +297,7 @@ const Signup = () => {
               // value={formData.account_type}
               // onChange={handleChange}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 w-full"
-              required
+              // required
             >
              <option value="Merchant">Merchant</option>
             

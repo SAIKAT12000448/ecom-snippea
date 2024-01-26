@@ -11,7 +11,7 @@ const TopRated = () => {
     const minRating = 4; // Minimum rating for filtering
 
     useEffect(() => {
-        fetch('https://corp.glbpowerplant.com/api/homepageProducts')
+        fetch('https://corp.quirkybuy.com/api/homepageProducts')
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data.data);
