@@ -244,7 +244,7 @@ console.log(formData);
           </div>
         </div>
 
-        <div className='mb-4'>
+        {/* <div className='mb-4'>
         <input
               type="text"
               id="promo"
@@ -255,7 +255,7 @@ console.log(formData);
               className="px-3 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-blue-500"
             
             />
-        </div>
+        </div> */}
 
      
 

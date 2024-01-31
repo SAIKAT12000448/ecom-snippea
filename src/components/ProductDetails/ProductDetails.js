@@ -9,7 +9,7 @@ import './ProductDetails.css';
 import Footer from '../Shared/Footer/Footer';
 import { Link } from 'react-router-dom';
 import RelatedProducts from './Relatedproducts/RelatedProducts';
-// import { Reviews } from './Reviews/Reviews';
+import { Reviews } from './Reviews/Reviews';
 import Swal from 'sweetalert2'
 import quirkyPoint from '../../images/Quirkypoint.svg'
 const ProductDetails = () => {
@@ -21,10 +21,10 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(0);
   const details  = productDetails.product && productDetails.product.product_discounted_price;
   const [totalPrice, setTotalPrice] = useState(details);
-  // console.log('product',productDetails);
-  // console.log(totalPrice);
+  console.log('product',productDetails);
+  console.log(totalPrice);
 
-  // console.log(productDetails);
+  console.log(productDetails);
     const { slug } = useParams();
    
 
@@ -44,9 +44,9 @@ const ProductDetails = () => {
         
         
       };
-      // console.log('data',data);
+      console.log('data',data);
     
-      fetch('https://corp.quirkybuy.com/api/buyProduct', {
+      fetch('https://corp.glbpowerplant.com/api/buyProduct', {
         method: 'POST',
         headers: {  
           'Content-Type': 'application/json', 
@@ -89,7 +89,7 @@ const ProductDetails = () => {
 
 const handleButtonClick = () => {
 
-// console.log('first');
+console.log('first');
       if(productDetails.product?.product_min_buy_quantity-1>=quantity){
         Swal.fire({
           icon: "error",
@@ -135,10 +135,10 @@ const handleButtonClick = () => {
         fetch(`https://corp.quirkybuy.com/api/productDetails/${slug}`)
         .then(res=>res.json())
         .then(data=>{
-            // console.log(data.data.ratings);
+            console.log(data.data.ratings);
             setCurrentImageIndex(0);
             setProductDetails(data.data);
-            // console.log(data.data);
+            console.log(data.data);
             // console.log(data.data.product.product_min_buy_quantity);
         })
 
@@ -150,7 +150,7 @@ const handleButtonClick = () => {
 
     const handleShareClick=()=>{
        const currentUrl = window.location.href;
-      //  console.log(currentUrl);
+       console.log(currentUrl);
        const tempInput = document.createElement('input');
         tempInput.value = currentUrl;
         document.body.appendChild(tempInput);
@@ -197,10 +197,10 @@ const handleButtonClick = () => {
         {productDetails.product_images &&
           productDetails.product_images.map((imageUrl, index) => (
             <div key={index} onClick={() => handleImageClick(index)}>
-              <image
-              width="150px"
+              <img
+              style={{ width: '100%', height: '100%',maxHeight:'150px',objectFit: 'contain' ,objectPosition: 'center'}}
                 src={imageUrl}
-                alt={`Product Image ${index + 1}`}
+                alt={`Product ${index + 1}`}
                 className={currentImageIndex === index ? 'selected' : ''}
               />
             </div>
@@ -212,14 +212,15 @@ const handleButtonClick = () => {
 <div className=''>
           {productDetails.product_images && (
           <div>
-            <image
-            width="100%"
+            <img
+    style={{ width: '100%', height: '100%',objectFit: 'contain' ,objectPosition: 'center'}}
+
               src={
                 currentImageIndex !== null
                   ? productDetails.product_images[currentImageIndex]
                   : productDetails.product_images[0] 
               }
-              alt="Selected Product Image"
+              alt="Selected Product"
             />
           </div>
         )}
@@ -250,17 +251,14 @@ const handleButtonClick = () => {
     Rating:
     {Array.from({ length: 5 }, (_, index) => {
         if (index < Math.floor(productDetails.ratings)) {
-            // Display full gold star for full rating
             return <FontAwesomeIcon icon={faStar} key={index} style={{ color: 'gold' }} />;
         } else if (index === Math.floor(productDetails?.ratings)) {
-            // Display a half gold star for the first half
             return (
                 <span key={index}>
                     <FontAwesomeIcon icon={faStarHalfAlt} style={{ color: 'gold' }} />
                 </span>
             );
         } else {
-            // Display no star (white star) for the rest
             return <FontAwesomeIcon icon={faStar} key={index} style={{ color: 'white' }} />;
         }
     })}
@@ -309,10 +307,11 @@ const handleButtonClick = () => {
           <div>
           {productDetails.product_images && productDetails.product_images.length > 0 ? (
                 
-                <image
-                width="50%"
+                <img
+                style={{ width: '100%', height: '100%',maxWidth:'',objectFit: 'contain' ,objectPosition: 'center'}}
+                
                 src={productDetails.product_images[currentImageIndex]}
-                alt="Selected Product Image"
+                alt="Selected Product"
               />
                 ) : 
                 <p>there is no image</p>
@@ -396,7 +395,7 @@ const handleButtonClick = () => {
 <div className='grid lg:grid-cols-4 gap-4 mt-20'>
   <div style={{height:'500px'}}  className='col-span-2 border p-2 review-border'>
    <div className='text-left'>
-   <button><Link className='text-2xl text-bold border'>Description</Link></button>
+   <button><Link to={`/details/${slug}/description`} className='text-2xl text-bold border'>Description</Link></button>
     <button><Link to={`/details/${slug}/reviews`} className='text-2xl text-bold border ms-5'>Review</Link></button>
    </div>
   <div style={{height:'800px'}} className="">

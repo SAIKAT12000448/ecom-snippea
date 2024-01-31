@@ -30,7 +30,7 @@ const TopRated = () => {
        <div className='container mx-auto  my-5 mt-8'>
        <div className='flex justify-between mx-10'> 
         <h1 className="text-left text-4xl antialiased font-bold my-4">Top Rated</h1><br/>
-         <h1> <Link to='/products'>  <p className='text-right text-2xl px-5'>view more</p></Link></h1>
+         <h1> <Link to='/products'>  <p className='text-right text-xl px-5'>view more</p></Link></h1>
 
           </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4 card-normal mx-10">
@@ -38,22 +38,36 @@ const TopRated = () => {
             
             <div style={{width:'280px'}} className="card bg-base-100 shadow-xl">
                 
-                <Link  onClick={()=>alert('coming soon')}>
-                            <div className="">
-                                <img style={{ width: '180px',margin:'auto' }} src={item.images[0]} alt="" />
-                                <span className='ms-2 border rounded-full p-2' style={{position: 'absolute', top: '0', right: '0',backgroundColor:'rgb(251, 189, 10)',color:'white',fontWeight:'700'}}>{item.discountPercentage}%</span>
+                <Link to={`/details/${item.slug}`}>
+                            <div style={{ height: '130px', position: 'relative', width: '160px',margin:'auto' }} className="image-container">
+                                <img
+                                    style={{ width: '100%', height: '100%',maxWidth:'',objectFit: 'contain' ,objectPosition: 'center'}}
+                                    src={item.images[0]}
+                                    alt=""
+                                    className='zoom-out-image'
+                                />
+                              
                             </div>
+                            <span
+                                    className='ms-2 border rounded-full p-2'
+                                    style={{
+                                        position: 'absolute',
+                                        top: '0',
+                                        right: '0',
+                                        backgroundColor: 'rgb(251, 189, 10)',
+                                        color: 'white',
+                                        fontWeight: '700'
+                                    }}
+                                >
+                                    {item.discountPercentage}%
+                                </span>
                         </Link>
-                {/* <Link to={`/details/${item.slug}`}>
-                            <div className="">
-                                <img style={{ width: '180px',margin:'auto' }} src={item.images[0]} alt="" />
-                                <span className='ms-2 border rounded-full p-2' style={{position: 'absolute', top: '0', right: '0',backgroundColor:'rgb(251, 189, 10)',color:'white',fontWeight:'700'}}>{item.discountPercentage}%</span>
+
+                        <div className="card-body">
+                            <div style={{height:'90px'}}>
+                            <Link to={`/details/${item.id}`}><h2 className="card-title text-left">{item.title}</h2></Link>
+
                             </div>
-                        </Link> */}
-
-
-          <div className="card-body ">
-            <Link to='/'><h2 className="card-title">{item.title}</h2></Link>
             <p className='text-left flex'>
                 Price: <span className='flex ms-4'><img style={{width:'15px',marginRight:'5px'}} src={quirkyPoint} alt=''/>  {item.discounted_price}</span>
            

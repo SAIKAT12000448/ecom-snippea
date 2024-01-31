@@ -17,6 +17,7 @@ import Payment from './components/Payment/Payment';
 import Recharge from './components/Payment/Recharge';
 import Withdraw from './components/Payment/Withdraw';
 import ContactUsPage from './components/Home/Contact/ContactUsPage';
+import Description from './components/ProductDetails/Description/Description';
 // import ScrollButton from './components/Shared/ScrollButton/ScrollButton';
 
 
@@ -47,6 +48,7 @@ function App() {
     {/* You can nest routes like this */}
     <Route path="/details/:slug" element={<ProductDetails />}>
       <Route path="reviews" element={<Reviews />} />
+      <Route path="description" element={<Description />} />
     </Route>
     
     {/* <Route path="/details/:slug" element={<ProtectedRoutes Component={ProductDetails} />} /> */}

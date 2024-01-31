@@ -70,10 +70,10 @@ const Navigation = () => {
       <details>
         <summary className='text-bold text-2xl font-normal' style={{color:'0D83BA'}}>Payment</summary>
         <ul style={{zIndex:"1000"}} className="p-2">
-          {/* <li><Link onClick={()=>alert('coming soon')} to='/payment'>Recharge</Link></li>
-          <li><Link onClick={()=>alert('coming soon')} to='/payment'>Withdraw</Link></li> */}
-          <li><Link onClick={()=>alert('coming soon')}>Recharge</Link></li>
-          <li><Link onClick={()=>alert('coming soon')}>Withdraw</Link></li>
+          <li><Link  to='/payment'>Recharge</Link></li>
+          <li><Link to='/payment'>Withdraw</Link></li>
+          {/* <li><Link onClick={()=>alert('coming soon')}>Recharge</Link></li>
+          <li><Link onClick={()=>alert('coming soon')}>Withdraw</Link></li> */}
         </ul>
       </details>
     </li> 

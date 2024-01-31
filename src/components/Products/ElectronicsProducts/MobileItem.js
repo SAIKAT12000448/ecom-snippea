@@ -39,7 +39,7 @@ const MobileItem = () => {
 
     // Filtering
 if (selectedRating !== 'all') {
-    mobileItems = mobileItems.filter(
+     mobileItems.filter(
       (item) => item.rating >= parseInt(selectedRating)
     );
   }
@@ -74,7 +74,7 @@ if (selectedRating !== 'all') {
             <Navigation></Navigation>
             <Searchbar></Searchbar>
            
-            <h1 className='text-center my-10 text-bold text-4xl'>Mobile Items</h1>
+            <h1 className='text-center my-10 text-bold text-4xl'>{categories.length > 0 && categories[categoryId-1].category_name}</h1>
 
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4 flow-col auto-cols-max md:auto-cols-min'>
 
@@ -168,16 +168,21 @@ if (selectedRating !== 'all') {
                     <div>
                     {displayedItems.map(item =>
                         <div className="card lg:card-side bg-yellow-50 shadow-xl mb-10" key={item.id}>
-                            <img style={{ width: '200px' }} src={item.images[0]} alt="Product" />
+                            <img 
+                         style={{ width: '200px', height: '200px',objectFit: 'contain' ,objectPosition: 'center'}}
+
+                             src={item.images[0]} 
+                             alt="Product" />
+
                             <div className="card-body grid grid-cols-2 gap-2">
                                 <div className=''>
-                                <h2 className="card-title text-xl font-bold">{item.title}</h2>
+                                <h2 className="card-title text-xl font-bold text-left">{item.title}</h2>
                                 <div className="product-info">
                                     <p className='text-start text-gray-600 flex'>
                                         Price: <img style={{width:'20px'}} src={Logo1} alt="" />{item.price}
                                     </p>
-                                    <p className='text-start text-green-500'>
-                                        Discount: ${item.discountPercentage}
+                                    <p className='text-start text-green-500 flex'>
+                                        Discount: <img style={{width:'20px'}} src={Logo1} alt="" />{item.discountPercentage}
                                     </p>
                                     <p className='text-start text-blue-500'>
                                         Stock: {item.stock} pieces
@@ -228,28 +233,34 @@ if (selectedRating !== 'all') {
 
             {/* Pagination controls */}
        
-<div className="flex justify-center mt-4 mb-10">
+            <div className="flex justify-center mt-4 mb-10 flex-wrap">
     {currentPage > 1 && (
         <button className="btn btn-accent mr-2" onClick={() => handlePageChange(currentPage - 1)}>
             Previous
         </button>
     )}
+
     {Array.from({ length: Math.ceil(mobileItems.length / ITEMS_PER_PAGE) }, (_, index) => (
-        <button
-            key={index}
-           
-            className={`btn ${currentPage === index + 1 ? 'btn-warning' : 'btn-white'} mr-2`}
-            onClick={() => handlePageChange(index + 1)}
-        >
-            {index + 1}
-        </button>
+        <React.Fragment key={index}>
+            <button
+                className={`btn ${currentPage === index + 1 ? 'btn-warning' : 'btn-white'} mr-2`}
+                onClick={() => handlePageChange(index + 1)}
+            >
+                {index + 1}
+            </button>
+
+            {/* Add a line break after the 15th button */}
+            {index === 14 && <br />}
+        </React.Fragment>
     ))}
+
     {endIndex < mobileItems.length && (
         <button className="btn btn-accent" onClick={() => handlePageChange(currentPage + 1)}>
             Next
         </button>
     )}
 </div>
+
 <Outlet></Outlet>
 <Footer></Footer>
         </div>
