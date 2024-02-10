@@ -64,7 +64,7 @@ const MobileAccessories = () => {
 
                         <div className="card-body">
                             <div style={{height:'90px'}}>
-                            <Link to={`/details/${item.id}`}><h2 className="card-title text-left">{item.title}</h2></Link>
+                            <Link to={`/details/${item.slug}`}><h2 className="card-title text-left">{item.title}</h2></Link>
 
                             </div>
             <p className='text-left flex content-center items-center'>

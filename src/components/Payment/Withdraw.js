@@ -124,7 +124,7 @@ const Withdraw = () => {
               style={{borderRadius:'10px',padding:'5px',width:'20rem'}}
               name='paymentMethod'
             >
-              <option value="bikash">Bikash</option>
+              <option value="bikash">Bkash</option>
               <option value="Bank">Bank</option>
               <option value="other">Other</option>
             </select>

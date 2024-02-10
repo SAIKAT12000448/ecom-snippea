@@ -13,7 +13,9 @@ import { Reviews } from './Reviews/Reviews';
 import Swal from 'sweetalert2'
 import quirkyPoint from '../../images/Quirkypoint.svg'
 const ProductDetails = () => {
-    
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
     
   const[productDetails,setProductDetails] = useState({});
     // const roundedRating = Math.round(productDetails.ratings);
@@ -27,7 +29,7 @@ const ProductDetails = () => {
   console.log(productDetails);
     const { slug } = useParams();
    
-
+ 
     
   const ifToken = localStorage.getItem('token');
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ const ProductDetails = () => {
       };
       console.log('data',data);
     
-      fetch('https://corp.glbpowerplant.com/api/buyProduct', {
+      fetch('https://corp.quirkybuy.com/api/buyProduct', {
         method: 'POST',
         headers: {  
           'Content-Type': 'application/json', 
@@ -386,7 +388,6 @@ console.log('first');
         </div>
         </div>
         
-{/* Grid end */}
 
 
 
@@ -398,9 +399,9 @@ console.log('first');
    <button><Link to={`/details/${slug}/description`} className='text-2xl text-bold border'>Description</Link></button>
     <button><Link to={`/details/${slug}/reviews`} className='text-2xl text-bold border ms-5'>Review</Link></button>
    </div>
-  <div style={{height:'800px'}} className="">
-             <Outlet></Outlet>
-  </div>
+   <div style={{ height: '400px', overflowY: 'auto' }} className="">
+  <Outlet></Outlet>
+</div>
   </div>
   <div className=' col-span-2'>
   <div className="card lg:card-side bg-base-100 shadow-xl">

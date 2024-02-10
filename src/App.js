@@ -18,6 +18,7 @@ import Recharge from './components/Payment/Recharge';
 import Withdraw from './components/Payment/Withdraw';
 import ContactUsPage from './components/Home/Contact/ContactUsPage';
 import Description from './components/ProductDetails/Description/Description';
+import About from './components/Home/About/About';
 // import ScrollButton from './components/Shared/ScrollButton/ScrollButton';
 
 
@@ -27,6 +28,7 @@ function App() {
     <div className="App">
       <header className="">
       <BrowserRouter>
+      
      <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/home" element={<Home />} />
@@ -47,13 +49,15 @@ function App() {
     
     {/* You can nest routes like this */}
     <Route path="/details/:slug" element={<ProductDetails />}>
+      <Route index element={<Description />}/>
+      <Route path="description" element={<Description />}/>
       <Route path="reviews" element={<Reviews />} />
-      <Route path="description" element={<Description />} />
     </Route>
     
     {/* <Route path="/details/:slug" element={<ProtectedRoutes Component={ProductDetails} />} /> */}
       
     <Route path="/contact" element={<ContactUsPage/>}/>
+    <Route path="/about" element={<About/>}/>
 
   </Routes>
 </BrowserRouter>

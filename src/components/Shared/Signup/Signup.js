@@ -12,6 +12,7 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     account_name: '',
     account_phone: '',
+    refer_code:'',
     account_password: '',
     account_ip_address:"",
     account_latitude:"",
@@ -80,6 +81,7 @@ const Signup = () => {
 
   try {
    const apiUrl = 'https://corp.quirkybuy.com/api/verifyOtp';
+  //  const apiUrl = 'https://corp.glbpowerplant.com/api/verifyOtp';
  
    const token = localStorage.getItem('token');
     const response = await fetch(apiUrl, {
@@ -176,12 +178,22 @@ console.log(formData);
         // console.log('Registration successful:', responseData);
         // setResponse(true);
         
+        setVerificationPopupOpen(true);
         localStorage.setItem('token',responseData.data.token);
         localStorage.setItem('userData',formData.account_name);
         
         }
       } else {
         const errorData = await response.json();
+        Swal.fire({
+          // position: "top-end",
+          icon: "error",
+          title: 'Verification failed: ' + errorData.message+' ' + Object.values(errorData.data)[0],
+
+          showConfirmButton: false,
+          timer: 3000
+        });
+        
         console.error('Registration failed:', errorData);
         // Handle registration failure, e.g., display an error message to the user.
       }
@@ -244,18 +256,18 @@ console.log(formData);
           </div>
         </div>
 
-        {/* <div className='mb-4'>
+        <div className='mb-4'>
         <input
               type="text"
               id="promo"
-              name="account_phone"
+              name="refer_code"
               placeholder='Promo code'
-              // value={formData.account_phone}
-              // onChange={handleChange}
+              value={formData.refer_code}
+               onChange={handleChange}
               className="px-3 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-blue-500"
             
             />
-        </div> */}
+        </div>
 
      
 
@@ -309,7 +321,7 @@ console.log(formData);
           <button
             type="submit"
             style={{backgroundColor:'#FBBD0A'}}
-            onClick={() => setVerificationPopupOpen(true)}
+            // onClick={() => setVerificationPopupOpen(true)}
             className="text-black px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300"
           >
             Sign Up

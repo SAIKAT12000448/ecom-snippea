@@ -1,0 +1,35 @@
+/* Recharge.css */
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-container input {
+    margin-right: 0.5rem;
+  }
+  
+  .instructions-container {
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .instructions-container h1 {
+    font-weight: bold;
+  }
+  
+  .instructions-container ul {
+    list-style-type: disc;
+    margin-left: 1.5em;
+    margin-top: 0.5em;
+    padding-inline-start: 20px;
+  }
+  

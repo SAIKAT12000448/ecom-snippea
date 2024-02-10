@@ -60,8 +60,8 @@ const Navigation = () => {
       <details>
         <summary className='text-bold text-2xl font-normal' style={{color:'0D83BA'}}>Partners</summary>
         <ul style={{zIndex:"1000"}} className="p-2">
-          <li><Link>Become a supplier</Link></li>
-          <li><Link>Merchant</Link></li>
+          <li><Link to='/signup'>Become a supplier</Link></li>
+          <li><Link to='/signup'>Merchant</Link></li>
         </ul>
       </details>
     </li>  
@@ -100,18 +100,18 @@ const Navigation = () => {
 
       <hr style={{borderColor:'black',marginBottom:'10px'}} />
 
-      {/* <li><li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/inventory">Inventory</Link></li></li>
+      <li><li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/inventory">Inventory</Link></li></li>
       <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/payment">Payment</Link></li></li>
-      {/* <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/withdraw">Withdraw</Link></li></li> */}
-      {/* <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/history">History</Link></li></li>
-      <li><Link onClick={()=>localStorage.removeItem('token')} style={{backgroundColor:'rgb(251, 189, 10)',fontWeight:900}} to='/login' className="btn"><span style={{marginTop:'5px'}}>LogOut</span></Link></li> */}
+     {/* <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/withdraw">Withdraw</Link></li></li> */}
+      <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/history">History</Link></li></li>
+      <li><Link onClick={()=>localStorage.removeItem('token')} style={{backgroundColor:'rgb(251, 189, 10)',fontWeight:900}} to='/login' className="btn"><span style={{marginTop:'5px'}}>LogOut</span></Link></li>
     
 
-      <li><li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}}  onClick={()=>alert('coming soon')}>Inventory</Link></li></li>
+      {/* <li><li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}}  onClick={()=>alert('coming soon')}>Inventory</Link></li></li>
       <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} onClick={()=>alert('coming soon')}>Payment</Link></li></li>
       {/* <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} to="/withdraw">Withdraw</Link></li></li> */}
-      <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} onClick={()=>alert('coming soon')}>History</Link></li></li>
-      <li><Link onClick={()=>localStorage.removeItem('token')} style={{backgroundColor:'rgb(251, 189, 10)',fontWeight:900}} to='/login' className="btn"><span style={{marginTop:'5px'}}>LogOut</span></Link></li>
+      {/* <li> <li><Link className='text-bold text-xl font-normal' style={{color:'0D83BA'}} onClick={()=>alert('coming soon')}>History</Link></li></li>
+      <li><Link onClick={()=>localStorage.removeItem('token')} style={{backgroundColor:'rgb(251, 189, 10)',fontWeight:900}} to='/login' className="btn"><span style={{marginTop:'5px'}}>LogOut</span></Link></li> */}
     
       </ul>
     </div>

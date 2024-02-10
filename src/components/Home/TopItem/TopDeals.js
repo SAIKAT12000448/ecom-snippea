@@ -24,7 +24,7 @@ const TopDeals = () => {
        <div className='container mx-auto my-3'>
        <div className='flex justify-between mx-10'> 
         <h1 className="text-left text-4xl antialiased font-bold my-4">Top Deals</h1><br/>
-         <h1> <Link to='/products'>  <p className='text-right text-xl px-5'>view more</p></Link></h1>
+         <h1> <Link>  <p className='text-right text-xl px-5'>view more</p></Link></h1>
 
           </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4 card-normal mx-10">
@@ -59,7 +59,7 @@ const TopDeals = () => {
 
                         <div className="card-body">
                             <div style={{height:'90px'}}>
-                            <Link to={`/details/${item.id}`}><h2 className="card-title text-left">{item.title}</h2></Link>
+                            <Link to={`/details/${item.slug}`}><h2 className="card-title text-left">{item.title}</h2></Link>
 
                             </div>
             <p className='text-left flex'>

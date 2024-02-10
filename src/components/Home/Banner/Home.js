@@ -26,7 +26,7 @@ const Home = ({data}) => {
                 <ElectronicsItem></ElectronicsItem>
                 <Fashions></Fashions>
                 <MobileAccessories></MobileAccessories>
-                <Flagbar></Flagbar>
+                {/* <Flagbar></Flagbar> */}
                 <DownloadBanner></DownloadBanner>
                 <Footer></Footer>
         </div>

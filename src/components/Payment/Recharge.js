@@ -1,131 +1,114 @@
-import React, { useState } from 'react'
-// import Navigation from '../Shared/Navigation'
-import Swal from 'sweetalert2'
+
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import './Recharge.css';
 
 const Recharge = () => {
   const [withdrawAmount, setWithdrawAmount] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('bikash');
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  // const [formData, setFormData] = useState(new FormData()); // Declare FormData here
 
-     const [paymentMethods, setPaymentMethods] = useState({
-    bikash: false,
-    Nagad: false,
-    Bank: false,
-  });
-
-
+  console.log(paymentMethods);
   let token = localStorage.getItem('token');
 
-  const handleSubmit= async  (e)=>{
-    e.preventDefault();
-    const requestBody = {
-      request_amount: withdrawAmount,
-      request_method: paymentMethod,
-      request_identification: accountNumber,
-      request_trxn_id: confirmPassword,
+  useEffect(() => {
+    // Fetch payment methods from the API and update the state
+    const fetchPaymentMethods = async () => {
+      try {
+        const response = await fetch('https://corp.quirkybuy.com/api/paymentMethods');
+        if (response.ok) {
+          const data = await response.json();
+          // console.log(data.data);
+          setPaymentMethods(data.data);
+        } else {
+          console.error('Failed to fetch payment methods');
+        }
+      } catch (error) {
+        console.error('Error during payment methods fetch:', error);
+      }
     };
-   
-    try{
 
-    
+    fetchPaymentMethods();
+  }, []); 
 
-      const response =await fetch('https://corp.quirkybuy.com/api/rechargeWallet',{
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formData = new FormData();
+    formData.append('request_amount', withdrawAmount);
+    formData.append('request_method', selectedPaymentMethod); // Make sure selectedPaymentMethod is an integer
+    formData.append('account_number', accountNumber);
+    formData.append('proof_image', selectedImage);
+  
+    if (!selectedImage) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Please select an image for billing proof.',
+      });
+      return; // Stop the function execution if the image is not selected
+    }
+  
+    try {
+      const response = await fetch('https://corp.quirkybuy.com/api/rechargeWallet', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-           Authorization: `${token}`,
+          'Authorization': `${token}`,
         },
-        body: JSON.stringify(requestBody),
+        body: formData,
       });
   
-      if(response.ok){
-        // console.log('Recharge successful');
-        Swal.fire("Recharge successful");
-      }
-      else{
+      console.log(response);
+  
+      if (response.ok) {
+        Swal.fire('Recharge successful');
+      } else {
         console.error('Recharge failed');
+        const responseData = await response.json();
         Swal.fire({
-          icon: "error",
-          // title: "Oops...",
-          text: "Try again!",
-          
+          icon: 'error',
+          text: responseData.message, // Assuming your API sends an error message in the response
         });
       }
-    }catch(error){
-      console.error('Error during recharge:',error);
-
-    }
-
-  }
-  
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    if (type === 'checkbox') {
-      setPaymentMethods((prevMethods) => ({
-        ...prevMethods,
-        [name]: checked,
-      }));
-      
-    } else {
-      switch (name) {
-        case 'withdrawAmount':
-          setWithdrawAmount(value);
-          break;
-        case 'accountNumber':
-          setAccountNumber(value);
-          break;
-        case 'confirmPassword':
-          setConfirmPassword(value);
-          break;
-        case 'imagefile':
-          setSelectedImage(e.target.files[0]);
-          break;
-        default:
-          break;
-      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Error during recharge. Please try again.',
+      });
+      console.error('Error during recharge:', error);
     }
   };
-  
+
+  const handleChange = (e) => {
+    const { name, value} = e.target;
+    console.log(e.target.files);
+    switch (name) {
+      case 'withdrawAmount':
+        setWithdrawAmount(value);
+        break;
+      case 'accountNumber':
+        setAccountNumber(value);
+        break;
+      case 'imagefile':
+        setSelectedImage(e.target.files[0]);
+
+        break;
+      case 'paymentMethod':
+        setSelectedPaymentMethod(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className='m-5'>
+    <div className='border-2 border-t-0 p-5 mt-10 flex flex-col justify-center items-center'>
+ 
 
-
-
-
-    <div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5 mt-10  flex justify-center items-center'>
-    {/* payment method  */}
-
-    
-
-  <div className='mb-4 flex flex-col md:flex-row justify-between'>
-              <label htmlFor='paymentMethods' className='inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4'>
-                Payment Methods
-              </label>
-              <div>
-                {Object.keys(paymentMethods).map((method) => (
-                  <div key={method} className='flex items-center'>
-                    <input
-                      type='checkbox'
-                      id={`paymentMethod_${method}`}
-                      name={method}
-                      checked={paymentMethods[method]}
-                      onChange={handleChange}
-                      className='mr-2'
-                    />
-                    <label htmlFor={`paymentMethod_${method}`}>{method}</label>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-
-
-
-
-    <form className='flex justify-between' onSubmit={handleSubmit}>
+        <form method="post" action="post" enctype="multipart/form-data" className='flex justify-between form-container' onSubmit={handleSubmit}>
       <div>
           <div className="mb-4 flex flex-col md:flex-row justify-between">
             <label htmlFor="withdrawAmount" className="inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4 lg:ms-3">
@@ -141,10 +124,32 @@ const Recharge = () => {
             />
           </div>
 
+          <div className='mb-4 flex flex-col md:flex-row justify-between'>
+          <label htmlFor='paymentMethod' className='inline text-black text-xl font-bold mb-2 text-left md:mb-0 md:mr-4 lg:ms-3'>
+            Payment Method
+          </label>
+          <div className='dropdown-container'>
+            <select
+              id='paymentMethod'
+              name='paymentMethod'
+              value={selectedPaymentMethod}
+              onChange={handleChange}
+              className='px-3 py-2 border border-gray-300 rounded-lg w-full md:w-64 focus:outline-none focus:border-blue-500'
+              required
+            >
+              <option value='' disabled>Select Payment Method</option>
+              {paymentMethods.map((pm) => (
+                <option key={pm.pm_id} value={pm.pm_id}>
+                  {pm.pm_name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
          
 
           <div className="mb-4 flex flex-col md:flex-row justify-between">
-            <label htmlFor="accountNumber" className="inline text-black text-xl font-bold mb-2 md:mb-0 md:mr-4 lg:ms-3">
+            <label htmlFor="accountNumber" className="inline text-black text-xl text-left font-bold mb-2 md:mb-0 md:mr-4 lg:ms-3">
               Account No
             </label>
             <input
@@ -157,27 +162,15 @@ const Recharge = () => {
             />
           </div>
 
-          <div className="mb-4 flex flex-col md:flex-row justify-between">
-            <label htmlFor="confirmPassword" className="inline text-black text-sm text-xl font-bold mb-2 md:mb-0 md:mr-4">
-              Transaction ID
-            </label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              onChange={handleChange}
-              className="px-3 py-2 border border-gray-300 rounded-lg w-full md:w-64 focus:outline-none focus:border-blue-500"
-              required
-            />
-          </div>
+       
 
         <div className="mb-4 flex flex-col md:flex-row justify-between">
-      <label htmlFor="imageInput" className="inline text-black text-sm text-xl font-bold mb-2 md:mb-0 md:mr-4">Billing Proof:</label>
+      <label htmlFor="imageInput" className="inline text-black text-left text-xl font-bold mb-2 md:mb-0 md:mr-4 lg:ms-3">Billing Proof:</label>
       <input
         type="file"
         id="imageInput"
-        accept="image/*"
-       className="px-3 py-2 border border-gray-300 rounded-lg w-full md:w-64 focus:outline-none focus:border-blue-500"
+        accept=".jpg, .jpeg, .png"
+        className="px-3 py-2 border border-gray-300 rounded-lg w-full md:w-64 focus:outline-none focus:border-blue-500 "
 
         name="imagefile"
         onChange={handleChange}
@@ -200,31 +193,24 @@ const Recharge = () => {
 
 
         </form>
+      </div>
+
+      <div className='instructions-container'>
+        <h1 className='text-bold text-left'>Instruction</h1>
+        <ul className='text-left'>
+          <li>Bkash Agent number – 01690214066 (only cash out) Minimum recharge 1000 taka</li>
+          <li>Nagad Agent Number- 01610838330 (only cash out) Minimum Recharge 1000 taka</li>
+          <li>Bank Account <br />
+            –Bank Name- City Bank Ltd. <br />
+            -Account Name- Md Mehedi Hasan <br />
+            -Account Number – 2303949021001 <br />
+            -Branch – Cumilla
+</li>
+  
+        </ul> 
+      </div>
     </div>
+  );
+};
 
-
-
-    <div className="">
-
-<div style={{borderRadius:'20px'}} className='border-2 border-t-0 p-5 mt-5'>
-  <h1 className='text-bold text-left'>Instruction</h1>
-  <ul className='text-left' style={{ listStyleType: 'disc', marginLeft: '1.5em', marginTop: '0.5em' }}>
-    <li>dfmdmfk........</li>
-    <li>dfmdmfk........</li>
-    <li>dfmdmfk........</li>
-    <li>dfmdmfk........</li>
-    <li>dfmdmfk........</li>
-    
-  </ul>
-  </div>
-
-</div>
-
-
-
-
-    </div>
-  )
-}
-
-export default Recharge
+export default Recharge;

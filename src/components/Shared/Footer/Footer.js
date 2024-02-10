@@ -12,18 +12,18 @@ const Footer = () => {
         <div className="w-full md:w-1/4">
           <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4">
-            <a href="#" className="text-white hover:text-gray-400">
+            <a href="https://www.facebook.com/QuirkyBuy2024" className="text-white hover:text-gray-400">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="#" className="text-white hover:text-gray-400">
+            {/* <a href="#" className="text-white hover:text-gray-400">
               <i className="fab fa-instagram"></i>
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="w-full md:w-1/4">
           <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-          <p>Email: contact@example.com</p>
-          <p>Phone: +1 (123) 456-7890</p>
+          <p>Email: info@quirkybuy.com</p>
+          <p>Phone: +447440171896</p>
         </div>
         <div className="w-full md:w-1/4">
           <h3 className="text-lg font-semibold mb-4">Quirky</h3>
